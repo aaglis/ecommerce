@@ -1,0 +1,41 @@
+header {
+  padding: 1rem 8rem;
+
+  .upper-side {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo {
+
+      pre {
+        font-size: 2rem;
+        font-family: 'AmstelvarAlpha';
+        font-weight: 100;
+        text-align: center;
+        letter-spacing: 2px;
+        white-space: pre-wrap;
+        line-height: 26px;
+      }
+    }
+  }
+
+  .client-area {
+    display: flex;
+    gap: 1.8rem;
+
+    .user a, .shopping-cart a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+
+      img {
+        margin-right: 2px;
+      }
+
+    }
+
+  }
+}
