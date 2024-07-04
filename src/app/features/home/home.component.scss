@@ -1,0 +1,17 @@
+main {
+  width: 100%;
+
+  .banners-carousel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    .banner {
+      width: 90%;
+      height: 570px;
+      overflow: hidden;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
