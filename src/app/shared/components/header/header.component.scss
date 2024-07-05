@@ -1,11 +1,5 @@
 :host {
-  display: flex;
-  box-sizing: content-box;
-  margin: 0 auto;
-
-  max-width: 1620px;
-  padding: 1rem 24px;
-  transition: .3s;
+  padding: 1.5rem 0;
   header {
     width: 100%;
 
@@ -15,8 +9,11 @@
       justify-content: space-between;
 
       .logo {
-
-        pre {
+        display: flex;
+        // justify-content: center;a
+        align-items: center;
+        justify-content: center;
+        h2 {
           font-size: 2rem;
           font-family: 'AmstelvarAlpha';
           font-weight: 100;
