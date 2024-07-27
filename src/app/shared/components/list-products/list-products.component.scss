@@ -1,0 +1,62 @@
+@import '../../../../variables.scss';
+:host {
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 2rem 0;
+    gap: 2rem;
+    .list-products-container {
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 2rem;
+
+      .product {
+        flex: 1 1 250px;
+        padding: 15px 12px;
+        height: 370px;
+        border: 1px solid $black-color;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+
+        .container-img {
+          width: 100%;
+          height: 200px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+          }
+        }
+
+        .container-details {
+          display: flex;
+          flex-direction: column;
+          padding: 10px;
+          gap: 10px;
+        }
+
+        .action-container {
+          display: flex;
+          flex-grow: 1;
+          flex-direction: column;
+          align-items: center;
+          justify-content: end;
+
+          button {
+            width: 90%;
+            height: 33px;
+            border-style: none;
+            border-radius: 5px;
+            background-color: lighten($primary-color, 20%);
+            color: $gray-color;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+}

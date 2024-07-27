@@ -1,0 +1,30 @@
+@import '../../../../variables.scss';
+
+:host {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .products-counter {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: $primary-color;
+    color: white;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    font-size: 12px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin: 0;
+      text-align: center;
+      font-weight: bold;
+      color: $gray-color;
+    }
+  }
+}

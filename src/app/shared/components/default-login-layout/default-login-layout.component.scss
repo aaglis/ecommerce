@@ -1,0 +1,18 @@
+:host {
+  position: relative;
+
+  header {
+    padding: 2rem;
+    box-shadow: 0px 15px 10px -8px rgba(0,0,0,0.1);
+  }
+  h2 {
+    padding-bottom: 4rem;
+    text-align: center;
+  }
+
+  main {
+    padding-top: 4rem;
+    width: 400px;
+    margin: 0 auto;
+  }
+}

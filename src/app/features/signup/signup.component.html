@@ -1,0 +1,9 @@
+<app-default-login-layout>
+  <form [formGroup]="registerForm">
+    <app-input-layout type="text" formControlName="name" placeholder="Digite seu Nome"></app-input-layout>
+    <app-input-layout type="email" formControlName="email" placeholder="Digite seu Email"></app-input-layout>
+    <app-input-layout type="password" formControlName="password" placeholder="Digite sua Senha"></app-input-layout>
+    <button type="submit" class="primary" (click)="submit()" (keydown.enter)="submit()">Registrar</button>
+    <button routerLink="/login" class="secondary">Já tenho conta</button>
+  </form>
+</app-default-login-layout>
