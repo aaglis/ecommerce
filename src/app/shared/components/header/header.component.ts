@@ -1,4 +1,4 @@
-import { AsyncPipe, NgOptimizedImage } from '@angular/common';
+import { AsyncPipe, CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
 import { RouterLink } from '@angular/router';
@@ -6,12 +6,13 @@ import { LoginService } from '../../../services/login.service';
 import { IUser } from '../../../core/interfaces/user.interface';
 import { Subscription } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { LucideAngularModule } from 'lucide-angular';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [NgOptimizedImage, CartComponent, RouterLink, AsyncPipe],
+  imports: [NgOptimizedImage, CartComponent, RouterLink, AsyncPipe, CommonModule, LucideAngularModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -53,6 +54,10 @@ export class HeaderComponent implements OnDestroy, OnInit {
 
   getFirstName(fullName?: string | null): string | null | undefined{
     return fullName?.split(' ')[0];
+  }
+
+  logout() {
+    this.loginService.logout()
   }
 
 }

@@ -1,29 +1,42 @@
 <header>
-
     <div class="upper-side">
         <section class="search">
-            <img
-              [ngSrc]='searchImg'
-              width="30"
-              height="30"
-              alt="icone de busca"
-              >
+            <img [ngSrc]='searchImg' width="30" height="30" alt="icone de busca"/>
         </section>
         <section class="logo">
           <h2>Ecommerce</h2>
         </section>
         <section class="client-area">
-          <div class="user">
+          <!-- {{ user ? 'Olá, ' + getFirstName(user.name) : 'Entrar' }} -->
+          @if(user) {
+            <div class="user user-options">
+              <div class="intro">
+                <p>Olá, <strong> {{ getFirstName(user.name) }}</strong></p>
+                <lucide-icon name="chevron-right" size="22" strokeWidth="2"></lucide-icon>
+              </div>
+              <div class="container-options">
+                <div class="option">
+                  <lucide-icon name="user" [size]="20" [strokeWidth]="2"></lucide-icon>
+                  <a routerLink="profile">Perfil</a>
+                </div>
+                <div class="option">
+                  <lucide-icon name="box" [size]="20" [strokeWidth]="2"></lucide-icon>
+                  <a routerLink="orders">Meus pedidos</a>
+                </div>
+                <div class="option">
+                  <lucide-icon name="log-out" [size]="20" [strokeWidth]="2"></lucide-icon>
+                  <a routerLink="login" (click)="logout()">Sair</a>
+                </div>
+              </div>
+            </div>
+          } @else {
+            <div class="user">
             <a routerLink="login">
-              <img
-                [ngSrc]='userImg'
-                width="30"
-                height="30"
-                alt="icone de usuário"
-              >
-              {{ user ? getFirstName(user.name) : 'Entrar' }}
+              <img [ngSrc]='userImg' width="30" height="30" alt="icone de usuário"/>
+              <strong>Entrar</strong>
             </a>
           </div>
+          }
           <div class="shopping-cart">
             <app-cart></app-cart>
           </div>

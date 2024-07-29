@@ -28,7 +28,9 @@
     .client-area {
       display: flex;
       gap: 1.8rem;
-
+      position: relative;
+      width: 250px;
+      justify-content: end;
       .user a, .shopping-cart a {
         display: flex;
         align-items: center;
@@ -41,6 +43,65 @@
         }
 
       }
+
+      .user-options {
+        width: 180px;
+        position: absolute;
+        left: 0;
+        z-index: 2;
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 8px;
+        transition: .3s;
+
+        .intro {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .container-options {
+          display: none;
+        }
+
+        &:hover {
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+          .intro lucide-icon {
+            transform: rotate(90deg);
+          }
+          .container-options {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 0 8px;
+            z-index: 1;
+            .option {
+              display: flex;
+              align-items: center;
+              gap: 5px;
+              padding: 8px 0;
+              cursor: pointer;
+              transition: .3s;
+
+              lucide-icon {
+                display: flex;
+                align-items: center;
+              }
+              &:hover {
+                a {
+                  text-decoration: underline;
+                  text-underline-offset: 3px;
+                }
+              }
+            }
+          }
+        }
+      }
+
 
     }
   }

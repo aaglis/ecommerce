@@ -39,4 +39,10 @@ export class LoginService {
     })
   }
 
+  logout() {
+    localStorage.removeItem('token')
+    this.user$.next(null)
+    this.router.navigate(['/'])
+  }
+
 }
