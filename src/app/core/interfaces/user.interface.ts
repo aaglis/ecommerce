@@ -1,6 +1,6 @@
-export interface IUser {
-    id?: number;
-    name?: string | null;
-    email?: string | null;
-    password?: string | null;
+import { IUserLogin } from "./user-login.interface";
+
+export interface IUser extends IUserLogin {
+  id?: number;
+  name?: string | null;
 }

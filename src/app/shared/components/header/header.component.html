@@ -21,19 +21,10 @@
                 height="30"
                 alt="icone de usuário"
               >
-              {{ name }}
+              {{ user ? getFirstName(user.name) : 'Entrar' }}
             </a>
           </div>
           <div class="shopping-cart">
-            <!-- <a href="#">
-              <img
-                [ngSrc]='cartImg'
-                width="30"
-                height="30"
-                alt="icone de um carrinho de compras"
-              >
-              Carrinho
-            </a> -->
             <app-cart></app-cart>
           </div>
         </section>

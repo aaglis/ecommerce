@@ -3,6 +3,7 @@ import { DefaultLoginLayoutComponent } from '../../shared/components/default-log
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputLayoutComponent } from '../../shared/components/input-layout/input-layout.component';
 import { RouterLink } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ import { RouterLink } from '@angular/router';
 export class LoginComponent {
 
   formBuilder = inject(FormBuilder)
+  loginService = inject(LoginService)
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -21,8 +23,9 @@ export class LoginComponent {
   })
 
   submit() {
+    console.log(this.loginForm.value, this.loginForm.valid)
     if(this.loginForm.valid) {
-      console.log(this.loginForm.value)
+      this.loginService.login(this.loginForm.value)
     } else {
       console.log('Form is invalid')
     }
