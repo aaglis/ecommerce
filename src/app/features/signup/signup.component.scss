@@ -1,18 +1,44 @@
+.title {
+  padding-bottom: .5rem;
+  text-align: center;
+}
+
 form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
 
-  app-input-layout:not(:first-child) {
-    margin-top: 20px; // Espaço adicional entre app-input-layout
+  swiper-container {
+    --swiper-pagination-top: 2px;
+    --swiper-pagination-bottom: auto;
+    --swiper-pagination-color: #000;
+    swiper-slide {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding-top: 3rem;
+      .form-inputs{
+        display: flex;
+        flex-direction: column;
+        app-input-layout:not(:first-child) {
+          margin-top: 35px; // Espaço adicional entre app-input-layout
+        }
+      }
+    }
+    swiper-container::part(pagination) {
+      pointer-events: none;
+    }
   }
 
-  a {
-    text-align: end;
-    color: blue;
+  p {
+    text-align: center;
+    padding-top: 1rem;
+    a {
+      text-align: end;
+      color: blue;
 
-    &:hover {
-      color: lighten(blue, 10%);
+      &:hover {
+        color: lighten(blue, 10%);
+      }
     }
   }
 

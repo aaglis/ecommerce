@@ -1,9 +1,78 @@
 <app-default-login-layout>
-  <form [formGroup]="registerForm">
+  <!-- <form [formGroup]="registerForm">
     <app-input-layout type="text" formControlName="name" placeholder="Digite seu Nome"></app-input-layout>
     <app-input-layout type="email" formControlName="email" placeholder="Digite seu Email"></app-input-layout>
     <app-input-layout type="password" formControlName="password" placeholder="Digite sua Senha"></app-input-layout>
     <button type="submit" class="primary" (click)="submit()" (keydown.enter)="submit()">Registrar</button>
-    <button routerLink="/login" class="secondary">Já tenho conta</button>
+    <p>Já tenho uma conta. <a routerLink="/login">Fazer Login</a></p>
+  </form> -->
+
+  <!-- <swiper-container class="mySwiper" pagination="true" pagination-type="progressbar" navigation="true">
+  </swiper-container> -->
+  <div class="title">
+    <p>Parte {{ currentSlide }} de 3</p>
+    @switch (currentSlide) {
+      @case (1) {
+        <h3>Vamos criar seu acesso?</h3>
+        <p>Todos esses campos são obrigatórios</p>
+      }
+      @case (2) {
+        <h3>Para concluir, precisamos de mais algumas informações</h3>
+        <p>todos esses campos são obrigatórios</p>
+      }
+      @case (3) {
+        <h3>Deseja inserir seu endereço agora?</h3>
+        <p>Não é obrigatório. Pode ser cadastrado depois.</p>
+      }
+    }
+  </div>
+  <form [formGroup]="registerForm">
+    <swiper-container #swiper class="mySwiper" space-between="30" pagination="true" pagination-clickable="false" allow-touch-move="false">
+      <swiper-slide>
+        <div class="form-inputs">
+          <app-input-layout type="email" formControlName="email" placeholder="Email"></app-input-layout>
+          <app-input-layout type="text" formControlName="cpf" placeholder="Cpf"></app-input-layout>
+          <app-input-layout type="password" formControlName="password" placeholder="Crie uma nova senha"></app-input-layout>
+          <app-input-layout type="password" formControlName="confirmPassword" placeholder="Confirme a sua senha"></app-input-layout>
+        </div>
+        <button class="primary" (click)="goToNextSlide()">Avançar</button>
+        <p>Já tenho uma conta. <a routerLink="/login">Fazer Login</a></p>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="form-inputs">
+          <app-input-layout type="text" formControlName="firstName" placeholder="Seu primeiro nome"></app-input-layout>
+          <app-input-layout type="text" formControlName="lastName" placeholder="Seu último nome"></app-input-layout>
+          <app-input-layout type="text" formControlName="alias" placeholder="Apelido"></app-input-layout>
+          <app-input-layout type="text" formControlName="phone" placeholder="Telefone"></app-input-layout>
+          <app-input-layout type="text" formControlName="dateOfBirth" placeholder="Data de nascimento"></app-input-layout>
+        </div>
+        <button class="primary" (click)="goToNextSlide()">Avançar</button>
+        <button class="secondary" (click)="goToPreviousSlide()">Voltar</button>
+        <p>Já tenho uma conta. <a routerLink="/login">Fazer Login</a></p>
+      </swiper-slide>
+      <swiper-slide>
+        <div class="form-inputs">
+          <app-input-layout type="text" formControlName="cep" placeholder="Cep"></app-input-layout>
+          <app-input-layout type="text" placeholder="Endereço"></app-input-layout>
+          <app-input-layout type="text" formControlName="residenceNumber" placeholder="Número"></app-input-layout>
+          <app-input-layout type="text" placeholder="Bairro"></app-input-layout>
+          <app-input-layout type="text" formControlName="city" placeholder="Cidade"></app-input-layout>
+          <app-input-layout type="text" placeholder="Estado"></app-input-layout>
+        </div>
+        <button class="primary" (click)="submit()" (keydown.enter)="submit()">Registrar</button>
+        <button class="secondary" (click)="goToPreviousSlide()">Voltar</button>
+        <p>Já tenho uma conta. <a routerLink="/login">Fazer Login</a></p>
+      </swiper-slide>
+    </swiper-container>
+
+    <!-- <button type="submit" class="primary" (click)="submit()" (keydown.enter)="submit()">Registrar</button> -->
   </form>
 </app-default-login-layout>
+
+<!-- <app-input-layout type="text" formControlName="name" placeholder="Data de nascimento"></app-input-layout>
+<app-input-layout type="text" formControlName="name" placeholder="Telefone"></app-input-layout>
+<div class="name-wrapper">
+  <app-input-layout type="text" formControlName="name" placeholder="Seu primeiro nome"></app-input-layout>
+  <app-input-layout type="text" formControlName="firstName" placeholder="Seu último nome"></app-input-layout>
+  <app-input-layout type="text" formControlName="lastName" placeholder="Apelido"></app-input-layout>
+</div> -->
