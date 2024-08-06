@@ -39,6 +39,17 @@
           border-color: #222;
         }
       }
+
+      input[type="date"] {
+        color: #fff;
+        &:focus {
+          color: #000;
+          transition: .1s ease;
+        }
+        &:not(.focused) {
+          color: #fff;
+        }
+      }
     }
   }
 }

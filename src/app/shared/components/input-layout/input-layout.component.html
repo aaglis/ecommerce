@@ -7,6 +7,7 @@
       (input)="onInput($event)"
       (focus)="onFocus()"
       (blur)="onBlur()"
+      [class.focused]="isFocused || value"
     />
   </label>
   <div class="icon">
