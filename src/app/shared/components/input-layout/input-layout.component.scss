@@ -40,7 +40,20 @@
         }
       }
 
+<<<<<<< HEAD
 
+=======
+      input[type="date"] {
+        color: #fff;
+        &:focus {
+          color: #000;
+          transition: .1s ease;
+        }
+        &:not(.focused) {
+          color: #fff;
+        }
+      }
+>>>>>>> refs/remotes/aaglis/master
     }
   }
 }

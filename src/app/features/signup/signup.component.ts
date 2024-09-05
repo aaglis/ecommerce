@@ -43,16 +43,17 @@ export class SignupComponent implements AfterViewInit {
     dateOfBirth: ['', [Validators.required]],
     phone: ['', [Validators.required, Validators.minLength(11)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required, Validators.minLength]],
-    cep: ['', [Validators.minLength(8)]],
-    streetName: ['', [Validators.minLength(5)]],
-    city: ['', [Validators.minLength(3)]],
-    residenceNumber: ['', [Validators.minLength(1)]],
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+    cep: [''],
+    streetName: [''],
+    city: [''],
+    residenceNumber: [''],
   })
 
 
 
   submit() {
+<<<<<<< HEAD
     console.log(this.registerForm.value)
     if(this.registerForm.valid) {
       const formattedDateOfBirth = this.formatDateToISO(this.registerForm.value.dateOfBirth as string);
@@ -64,6 +65,17 @@ export class SignupComponent implements AfterViewInit {
 
 
       this.register.registerUser(user as IUserRegister).subscribe({
+=======
+    const completeName = `${this.registerForm.value.firstName} ${this.registerForm.value.lastName}`
+    this.registerForm.value.name = completeName
+
+    const formValue = this.registerForm.value
+    delete formValue.confirmPassword
+
+
+    if(this.registerForm.valid) {
+      this.register.registerUser(formValue).subscribe({
+>>>>>>> refs/remotes/aaglis/master
         next: (response) => {
           Swal.fire({
             title: "Login feito com sucesso!",
