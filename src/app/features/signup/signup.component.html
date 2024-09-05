@@ -31,7 +31,7 @@
       <swiper-slide>
         <div class="form-inputs">
           <app-input-layout type="email" formControlName="email" placeholder="Email"></app-input-layout>
-          <app-input-layout type="text" formControlName="cpf" placeholder="Cpf"></app-input-layout>
+          <app-input-layout type="text" formControlName="cpf" placeholder="Cpf" mask="000.000.000-00"></app-input-layout>
           <app-input-layout type="password" formControlName="password" placeholder="Crie uma nova senha"></app-input-layout>
           <app-input-layout type="password" formControlName="confirmPassword" placeholder="Confirme a sua senha"></app-input-layout>
         </div>
@@ -43,8 +43,8 @@
           <app-input-layout type="text" formControlName="firstName" placeholder="Seu primeiro nome"></app-input-layout>
           <app-input-layout type="text" formControlName="lastName" placeholder="Seu último nome"></app-input-layout>
           <app-input-layout type="text" formControlName="alias" placeholder="Apelido"></app-input-layout>
-          <app-input-layout type="text" formControlName="phone" placeholder="Telefone"></app-input-layout>
-          <app-input-layout type="text" formControlName="dateOfBirth" placeholder="Data de nascimento"></app-input-layout>
+          <app-input-layout type="text" formControlName="phone" placeholder="Telefone" mask="(00) 0 0000-0000"></app-input-layout>
+          <app-input-layout type="text" formControlName="dateOfBirth" placeholder="Data de nascimento" mask="00/00/0000"></app-input-layout>
         </div>
         <button class="primary" (click)="goToNextSlide()">Avançar</button>
         <button class="secondary" (click)="goToPreviousSlide()">Voltar</button>

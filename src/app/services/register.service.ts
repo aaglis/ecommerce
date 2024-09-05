@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IUser } from '../core/interfaces/user.interface';
+import { IUserRegister } from '../core/interfaces/user.interface';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class RegisterService {
     return this.httpClient.get<any>(this.userUrl)
   }
 
-  registerUser(user: IUser) {
+  registerUser(user: IUserRegister) {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     const options = { headers: headers };
     return this.httpClient.post<any>(`${this.userUrl}/user`, user, options)

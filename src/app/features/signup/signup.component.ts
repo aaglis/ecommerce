@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { InputLayoutComponent } from '../../shared/components/input-layout/input-layout.component';
 import { RegisterService } from '../../services/register.service';
 import Swal from 'sweetalert2';
+import { IUserRegister } from '../../core/interfaces/user.interface';
 
 @Component({
   selector: 'app-signup',
@@ -53,31 +54,39 @@ export class SignupComponent implements AfterViewInit {
 
   submit() {
     console.log(this.registerForm.value)
-    // if(this.registerForm.valid) {
-    //   this.register.registerUser(this.registerForm.value).subscribe({
-    //     next: (response) => {
-    //       Swal.fire({
-    //         title: "Login feito com sucesso!",
-    //         text: "Você será redirecionado para a página de login.",
-    //         icon: "success",
-    //         showCloseButton: true,
-    //         showCancelButton: true,
-    //         confirmButtonText: 'Fazer login',
-    //         cancelButtonText: "Cancelar"
-    //       }).then((result) => {
-    //         if(result.isConfirmed) {
-    //           this.router.navigate(['/login'])
-    //         }
-    //       })
-    //       console.log(response)
-    //     },
-    //     error: (error) => {
-    //       console.error(error)
-    //     }
-    //   })
-    // } else {
-    //   console.log('Form is invalid')
-    // }
+    if(this.registerForm.valid) {
+      const formattedDateOfBirth = this.formatDateToISO(this.registerForm.value.dateOfBirth as string);
+      this.registerForm.get('dateOfBirth')?.setValue(formattedDateOfBirth);
+
+      const { confirmPassword, ...user } = this.registerForm.value;
+
+      user.name = `${user.firstName} ${user.lastName}`;
+
+
+      this.register.registerUser(user as IUserRegister).subscribe({
+        next: (response) => {
+          Swal.fire({
+            title: "Login feito com sucesso!",
+            text: "Você será redirecionado para a página de login.",
+            icon: "success",
+            showCloseButton: true,
+            showCancelButton: true,
+            confirmButtonText: 'Fazer login',
+            cancelButtonText: "Cancelar"
+          }).then((result) => {
+            if(result.isConfirmed) {
+              this.router.navigate(['/login'])
+            }
+          })
+          console.log(response)
+        },
+        error: (error) => {
+          console.error(error)
+        }
+      })
+    } else {
+      console.log('Form is invalid')
+    }
   }
 
   goToNextSlide() {
@@ -92,6 +101,27 @@ export class SignupComponent implements AfterViewInit {
       const swiper = this.swiper.nativeElement.swiper;
       swiper.slidePrev();
     }
+  }
+
+  formatDateToISO(dateString: string): string {
+    // Remove as barras da string
+    const cleanDateString = dateString.replace(/\//g, '');
+
+    // Verifica se a string limpa tem exatamente 8 caracteres (DDMMYYYY)
+    // if (cleanDateString.length !== 8) {
+    //   throw new Error('Data inválida. Use o formato dd/mm/aaaa.');
+    // }
+
+    // Extrai o dia, mês e ano da string limpa
+    const day = cleanDateString.slice(0, 2);
+    const month = cleanDateString.slice(2, 4);
+    const year = cleanDateString.slice(4, 8);
+
+    // Cria um objeto Date no formato ISO
+    const formattedDate = new Date(`${year}-${month}-${day}T00:00:00.000Z`);
+
+    // Retorna a data formatada em ISO
+    return formattedDate.toISOString();
   }
 
 }

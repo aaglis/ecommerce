@@ -3,10 +3,10 @@ import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
 import { RouterLink } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
-import { IUser } from '../../../core/interfaces/user.interface';
 import { Subscription } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { LucideAngularModule } from 'lucide-angular';
+import { IUserInfos } from '../../../core/interfaces/user-infos.interface';
 
 
 @Component({
@@ -23,7 +23,7 @@ export class HeaderComponent implements OnDestroy, OnInit {
   userImg: string = 'assets/user-icon.svg'
 
   user$ = this.loginService.getUser$()
-  user: IUser | null = null
+  user: IUserInfos | null = null
   subscription: Subscription | null = null
   constructor() {
     this.subscription = this.user$.subscribe( {
@@ -37,10 +37,9 @@ export class HeaderComponent implements OnDestroy, OnInit {
   ngOnInit() {
     const token = localStorage.getItem('token')
     if (token) {
-      const decodeToken: IUser = jwtDecode(token)
+      const decodeToken: IUserInfos = jwtDecode(token)
       const user = {
-        email: decodeToken.email,
-        name: decodeToken.name
+        ...decodeToken
       }
       this.user = user
     }

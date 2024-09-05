@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputLayoutComponent } from '../../shared/components/input-layout/input-layout.component';
 import { RouterLink } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { IUserLogin } from '../../core/interfaces/user-login.interface';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,7 @@ export class LoginComponent {
   submit() {
     console.log(this.loginForm.value, this.loginForm.valid)
     if(this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value)
+      this.loginService.login(this.loginForm.value as IUserLogin)
     } else {
       console.log('Form is invalid')
     }

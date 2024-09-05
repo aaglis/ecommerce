@@ -1,12 +1,13 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 type inputType = 'text' | 'email' | 'password';
 
 @Component({
   selector: 'app-input-layout',
   standalone: true,
-  imports: [ ReactiveFormsModule],
+  imports: [ ReactiveFormsModule,  NgxMaskDirective, NgxMaskPipe],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -21,6 +22,7 @@ export class InputLayoutComponent implements ControlValueAccessor {
   @Input() type: inputType = 'text';
   @Input() placeholder: string = '';
   @Input() inputName: string = "";
+  @Input() mask: string = '';
 
   value: string = ''
   isFocused: boolean = false
