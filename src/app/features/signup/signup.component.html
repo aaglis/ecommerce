@@ -30,34 +30,64 @@
     <swiper-container #swiper class="mySwiper" space-between="30" pagination="true" pagination-clickable="false" allow-touch-move="false">
       <swiper-slide>
         <div class="form-inputs">
-          <app-input-layout type="email" formControlName="email" placeholder="Email"></app-input-layout>
+          <app-input-layout type="email" formControlName="email" placeholder="Email" [formControl]="getFormControl('email')"></app-input-layout>
+          @if(fixFields && (registerForm.get('email')?.hasError('email') || registerForm.get('email')?.hasError('required'))) {
+            <p class="error">Email inválido</p>
+          }
           <app-input-layout type="text" formControlName="cpf" placeholder="Cpf" mask="000.000.000-00"></app-input-layout>
-          <app-input-layout type="password" formControlName="password" placeholder="Crie uma nova senha"></app-input-layout>
+          @if(fixFields && registerForm.get('cpf')?.hasError('required')) {
+            <p class="error">Cpf inválido.</p>
+          }
+          <app-input-layout type="password" formControlName="password" placeholder="Sua senha"></app-input-layout>
+          @if(fixFields && (registerForm.get('password')?.hasError('passwordInvalid') || registerForm.get('password')?.hasError('required'))) {
+              <p class="error">Senha inválida. No mínimo 8 caracteres, 1 letra maiúscula e um caractere especial</p>
+          }
           <app-input-layout type="password" formControlName="confirmPassword" placeholder="Confirme a sua senha"></app-input-layout>
+          @if(fixFields && (registerForm.hasError('passwordMismatch') || registerForm.get('confirmPassword')?.hasError('required'))) {
+            <p class="error">As senhas não coincidem.</p>
+          }
         </div>
-        <button class="primary" (click)="goToNextSlide()">Avançar</button>
+        <button class="primary" (click)="goToNextSlide(1)">Avançar</button>
         <p>Já tenho uma conta. <a routerLink="/login">Fazer Login</a></p>
       </swiper-slide>
       <swiper-slide>
         <div class="form-inputs">
-          <app-input-layout type="text" formControlName="firstName" placeholder="Seu primeiro nome"></app-input-layout>
-          <app-input-layout type="text" formControlName="lastName" placeholder="Seu último nome"></app-input-layout>
+          <app-input-layout type="text" formControlName="firstName" placeholder="Seu nome"></app-input-layout>
+          @if(fixFields && registerForm.get('firstName')?.hasError('required')) {
+            <p class="error">Nome inválido.</p>
+          }
+          <app-input-layout type="text" formControlName="lastName" placeholder="Seu sobrenome"></app-input-layout>
+          @if(fixFields && registerForm.get('lastName')?.hasError('required')) {
+            <p class="error">Sobrenome inválido.</p>
+          }
           <app-input-layout type="text" formControlName="alias" placeholder="Apelido"></app-input-layout>
+          @if(fixFields && registerForm.get('alias')?.hasError('required')) {
+            <p class="error">Apelido inválido.</p>
+          }
           <app-input-layout type="text" formControlName="phone" placeholder="Telefone" mask="(00) 0 0000-0000"></app-input-layout>
+          @if(fixFields && (registerForm.get('phone')?.hasError('required') || registerForm.get('phone')?.hasError('phoneInvalid'))) {
+            <p class="error">Telefone inválido.</p>
+          }
           <app-input-layout type="text" formControlName="dateOfBirth" placeholder="Data de nascimento" mask="00/00/0000"></app-input-layout>
+          @if(fixFields && (registerForm.get('dateOfBirth')?.hasError('required') || registerForm.get('dateOfBirth')?.hasError('dateInvalid'))) {
+            <p class="error">Data de nascimento inválida.</p>
+          }
         </div>
-        <button class="primary" (click)="goToNextSlide()">Avançar</button>
+        <button class="primary" (click)="goToNextSlide(2)">Avançar</button>
         <button class="secondary" (click)="goToPreviousSlide()">Voltar</button>
         <p>Já tenho uma conta. <a routerLink="/login">Fazer Login</a></p>
       </swiper-slide>
       <swiper-slide>
         <div class="form-inputs">
-          <app-input-layout type="text" formControlName="cep" placeholder="Cep"></app-input-layout>
-          <app-input-layout type="text" placeholder="Endereço"></app-input-layout>
-          <app-input-layout type="text" formControlName="residenceNumber" placeholder="Número"></app-input-layout>
-          <app-input-layout type="text" placeholder="Bairro"></app-input-layout>
-          <app-input-layout type="text" formControlName="city" placeholder="Cidade"></app-input-layout>
-          <app-input-layout type="text" placeholder="Estado"></app-input-layout>
+          <app-input-layout type="text" formControlName="cep" placeholder="Cep" mask="00000-000"></app-input-layout>
+          @if(registerForm.get('cep')?.hasError('cepInvalid')) {
+            <p class="error">CEP inválido.</p>
+          }
+          <app-input-layout type="text" placeholder="Endereço" formControlName="streetName"></app-input-layout>
+          <app-input-layout type="text" placeholder="Número" formControlName="residenceNumber"></app-input-layout>
+          <app-input-layout type="text" placeholder="Bairro" formControlName="neighborhood"></app-input-layout>
+          <app-input-layout type="text" placeholder="Cidade" formControlName="city"></app-input-layout>
+          <app-input-layout type="text" placeholder="Estado" formControlName="state"></app-input-layout>
         </div>
         <button class="primary" (click)="submit()" (keydown.enter)="submit()">Registrar</button>
         <button class="secondary" (click)="goToPreviousSlide()">Voltar</button>

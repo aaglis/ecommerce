@@ -19,6 +19,12 @@ form {
       .form-inputs{
         display: flex;
         flex-direction: column;
+        p.error {
+          text-align: left;
+          color: red;
+          padding-top: 15px;
+        }
+
         app-input-layout:not(:first-child) {
           margin-top: 35px; // Espaço adicional entre app-input-layout
         }
