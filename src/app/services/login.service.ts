@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { IUserLogin } from '../core/interfaces/user-login.interface';
+import { ILogin } from '../core/interfaces/login.interface';
 import { HttpClient } from '@angular/common/http';
 import { jwtDecode } from 'jwt-decode';
 import { BehaviorSubject } from 'rxjs';
@@ -20,7 +20,7 @@ export class LoginService {
     return this.user$.asObservable()
   }
 
-  login(user: IUserLogin) {
+  login(user: ILogin) {
     return this.httpClient.post<any>(this.userUrl, user).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.access_token)

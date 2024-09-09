@@ -5,7 +5,7 @@ import localePt from '@angular/common/locales/pt';
 
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
-import { Box, ChevronRight, LogOut, LucideAngularModule, User } from 'lucide-angular';
+import { Box, ChevronRight, LogOut, LucideAngularModule, User, UserCog, ShoppingCart } from 'lucide-angular';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 
 registerLocaleData(localePt)
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    importProvidersFrom(LucideAngularModule.pick({ User, Box, LogOut, ChevronRight })),
+    importProvidersFrom(LucideAngularModule.pick({ User, Box, LogOut, ChevronRight, UserCog, ShoppingCart })),
     [{provide: LOCALE_ID, useValue: 'pt-BR'}],
     provideEnvironmentNgxMask()
   ]

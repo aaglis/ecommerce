@@ -1,0 +1,25 @@
+<aside>
+  <h2>Ecommerce</h2>
+  <nav>
+    <div class="item">
+      <lucide-icon name="user" [size]="26"></lucide-icon>
+      <a routerLink="users">Usuários</a>
+    </div>
+    <div class="item">
+      <lucide-icon name="box" [size]="26"></lucide-icon>
+      <a routerLink="products">Produtos</a>
+    </div>
+    <div class="item">
+      <lucide-icon name="shopping-cart" [size]="26"></lucide-icon>
+      <a routerLink="orders">Compras</a>
+    </div>
+    <div class="item">
+      <lucide-icon name="user-cog" [size]="26"></lucide-icon>
+      <a routerLink="administrators">Administradores</a>
+    </div>
+  </nav>
+</aside>
+
+<div class="dashboard">
+  <router-outlet></router-outlet>
+</div>

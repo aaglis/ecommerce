@@ -1,0 +1,35 @@
+:host {
+  display: flex;
+  height: 100vh;
+  aside {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    padding: 40px 20px 0 20px;
+    gap: 40px;
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      .item {
+        display: flex;
+        gap: 15px;
+        align-items: center;
+        color: gray;
+        a {
+          color: gray;
+          text-decoration: none;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 40px 20px;
+    background-color: #f8f8f8;
+  }
+}

@@ -1,22 +1,21 @@
 import { Component, inject } from '@angular/core';
 import { DefaultLoginLayoutComponent } from '../../shared/components/default-login-layout/default-login-layout.component';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputLayoutComponent } from '../../shared/components/input-layout/input-layout.component';
-import { RouterLink } from '@angular/router';
-import { LoginService } from '../../services/login.service';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AdminService } from '../../services/admin.service';
 import { ILogin } from '../../core/interfaces/login.interface';
 
-@Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [DefaultLoginLayoutComponent, ReactiveFormsModule, InputLayoutComponent, RouterLink],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.scss'
-})
-export class LoginComponent {
 
+@Component({
+  selector: 'app-admin-login',
+  standalone: true,
+  imports: [DefaultLoginLayoutComponent, InputLayoutComponent, ReactiveFormsModule],
+  templateUrl: './admin-login.component.html',
+  styleUrl: './admin-login.component.scss'
+})
+export class AdminLoginComponent {
   formBuilder = inject(FormBuilder)
-  loginService = inject(LoginService)
+  adminService = inject(AdminService)
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -26,10 +25,9 @@ export class LoginComponent {
   submit() {
     console.log(this.loginForm.value, this.loginForm.valid)
     if(this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value as ILogin)
+      this.adminService.login(this.loginForm.value as ILogin)
     } else {
       console.log('Form is invalid')
     }
   }
-
 }
