@@ -1,1 +1,18 @@
-<p>admins works!</p>
+<section class="table-admins">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Nome</th>
+      <th>Cargo</th>
+    </tr>
+    @for(admin of admins; track $index) {
+      <tr>
+        <td>{{ admin.id }}</td>
+        <td>{{ admin.email }}</td>
+        <td>{{ admin.name }}</td>
+        <td>{{ admin.role }}</td>
+      </tr>
+    }
+  </table>
+</section>
