@@ -3,6 +3,7 @@ import { ProductsServiceService } from '../../../services/products-service.servi
 import { IProduct } from '../../../core/interfaces/product.interface';
 import { CurrencyPipe, NgOptimizedImage, SlicePipe } from '@angular/common';
 import { CartService } from '../cart/service/cart.service';
+import { ICartProduct } from '../../../core/interfaces/id-product.interface';
 
 @Component({
   selector: 'app-list-products',
@@ -17,6 +18,7 @@ export class ListProductsComponent {
   cartService = inject(CartService)
 
   products: IProduct[] = []
+  selectedProducts: ICartProduct[] = []
 
   constructor() {
     this.productsService.getProducts().subscribe((productsList) => {
@@ -30,7 +32,21 @@ export class ListProductsComponent {
   }
 
   addToCart(product: IProduct) {
-    this.cartService.addProduct(product)
+    this.selectedProducts = this.cartService.getCartProductsList()
+    if(this.selectedProducts.length > 0) {
+      this.selectedProducts.forEach((selectedProduct) => {
+        if (selectedProduct.productId === product.id) {
+          this.cartService.alterateAmountProduct(product.id, selectedProduct.amount + 1)
+          return
+        } else {
+          this.cartService.addProduct({ productId: product.id, amount: 1 })
+        }
+      })
+    }
+    else {
+      this.cartService.addProduct({ productId: product.id, amount: 1 })
+    }
+    console.log(this.cartService.getCartProductsList())
   }
 
 }

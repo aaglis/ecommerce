@@ -1,8 +1,10 @@
-<img [ngSrc]="cartImg" alt="icone de um carrinho de compras" width="30" height="30">
-@if(cartLength$ | async) {
-  <div class="products-counter">
-    <p>
-      {{ cartLength$ | async }}
-    </p>
-  </div>
-}
+<a routerLink="/carrinho">
+  <img [ngSrc]="cartImg" alt="icone de um carrinho de compras" width="30" height="30">
+  @if(cartLength$ | async) {
+    <div class="products-counter">
+      <p>
+        {{ cartLength$ | async }}
+      </p>
+    </div>
+  }
+</a>

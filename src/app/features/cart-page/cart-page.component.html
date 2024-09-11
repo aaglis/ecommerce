@@ -1,0 +1,31 @@
+<header>
+  <h1>Ecommerce</h1>
+</header>
+
+<main>
+  <h2>Produtos Selecionados:</h2>
+
+  <div class="table-itens">
+    <table>
+      <tr>
+        <th>Tipo</th>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+      </tr>
+      @for(product of products; track $index) {
+        <tr>
+          <td>{{ product.type }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          @for (item of cartProducts; track $index) {
+            @if(product.id === item.productId) {
+              <td>{{ item.amount }}</td>
+            }
+          }
+        </tr>
+      }
+    </table>
+  </div>
+  <button (click)="comprar()">Comprar</button>
+</main>

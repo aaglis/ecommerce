@@ -5,10 +5,10 @@
   @for(item of products; track $index) {
     <div class="product">
       <div class="container-img">
-        <img [src]="item.image" alt="Imagem do produto" width="100">
+        <img [src]="item.imageUrl"  alt="Imagem do produto" width="100" loading="lazy">
       </div>
       <div class="container-details">
-        <h4 [title]="item.title">{{ item.title.length > 40 ? (item.title | slice:0:40) + '...' : item.title }}</h4>
+        <h4 [title]="item.name">{{ item.name.length > 40 ? (item.name | slice:0:40) + '...' : item.name }}</h4>
         <p>{{ item.price | currency:'BRL' }}</p>
       </div>
       <div class="action-container">

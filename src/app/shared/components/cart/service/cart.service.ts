@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../../../../core/interfaces/product.interface';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { ICartProduct } from '../../../../core/interfaces/id-product.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  private cartProducts: IProduct[] = []
+  private cartProducts: ICartProduct[] = []
   private addedProduct$ = new BehaviorSubject<number>(0)
 
   get cartLength() {
@@ -15,7 +16,20 @@ export class CartService {
     return this.addedProduct$.asObservable()
   }
 
-  addProduct(product: IProduct) {
+  getCartProductsList() {
+    return this.cartProducts
+  }
+
+  alterateAmountProduct(id: string, amount: number) {
+    this.cartProducts.forEach((product) => {
+      if (product.productId === id) {
+        product.amount = amount
+        return
+      }
+    })
+  }
+
+  addProduct(product: ICartProduct) {
     this.cartProducts.push(product)
     this.addedProduct$.next(this.cartProducts.length)
 

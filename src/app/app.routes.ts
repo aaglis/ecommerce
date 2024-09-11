@@ -14,5 +14,9 @@ export const routes: Routes = [
   {
     path: 'admin/dashboard',
     children: adminRoutes
+  },
+  {
+    path: 'carrinho',
+    loadComponent: () => import('@features/cart-page/cart-page.component').then(m=>m.CartPageComponent)
   }
 ];
