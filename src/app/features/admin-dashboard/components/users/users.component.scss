@@ -6,22 +6,6 @@
   padding: 20px 0;
   border-radius: 20px;
   background-color: #fff;
-
-  .actions {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 90px;
-    button {
-      width: 150px;
-      height: 35px;
-      border-style: none;
-      background-color: #000;
-      border-radius: 5px;
-      color: #fff;
-      font-weight: bold;
-    }
-  }
   .table-admins {
     table {
       display: flex;

@@ -1,0 +1,12 @@
+<div class="title">
+  <h3>Criar novo administrador</h3>
+  <lucide-icon name="x" (click)="closeModal()" [size]="24"></lucide-icon>
+</div>
+
+<form [formGroup]="adminForm">
+  <app-input-layout type="text" formControlName="name" placeholder="Nome"></app-input-layout>
+  <app-input-layout type="email" formControlName="email" placeholder="Email"></app-input-layout>
+  <app-input-layout type="password" formControlName="password" placeholder="Senha"></app-input-layout>
+  <app-input-layout type="text" formControlName="role" placeholder="Cargo"></app-input-layout>
+    <button type="submit" class="primary" (click)="submit()" (keydown.enter)="submit()">Criar</button>
+</form>

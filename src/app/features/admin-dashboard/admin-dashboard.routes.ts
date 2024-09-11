@@ -9,6 +9,10 @@ export const adminRoutes: Routes = [
       {
         path: 'administrators',
         loadComponent: () => import('@features/admin-dashboard/components/admins/admins.component').then(m=>m.AdminsComponent)
+      },
+      {
+        path: 'users',
+        loadComponent: () => import('@features/admin-dashboard/components/users/users.component').then(m=>m.UsersComponent)
       }
     ]
   }

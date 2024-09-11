@@ -1,0 +1,18 @@
+<section class="table-admins">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>Nome</th>
+      <th>Telefone</th>
+    </tr>
+    @for(user of users; track $index) {
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.phone }}</td>
+      </tr>
+    }
+  </table>
+</section>
