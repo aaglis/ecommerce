@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ProductsServiceService } from '../../../services/products-service.service';
+import { ProductsService } from '../../../services/products-service.service';
 import { IProduct } from '../../../core/interfaces/product.interface';
 import { CurrencyPipe, NgOptimizedImage, SlicePipe } from '@angular/common';
 import { CartService } from '../cart/service/cart.service';
@@ -14,7 +14,7 @@ import { ICartProduct } from '../../../core/interfaces/id-product.interface';
 })
 export class ListProductsComponent {
 
-  productsService = inject(ProductsServiceService)
+  productsService = inject(ProductsService)
   cartService = inject(CartService)
 
   products: IProduct[] = []
@@ -24,7 +24,6 @@ export class ListProductsComponent {
     this.productsService.getProducts().subscribe((productsList) => {
       this.products = productsList
       console.log(productsList)
-      console.log(this.products[0])
     })
   }
 
@@ -34,16 +33,24 @@ export class ListProductsComponent {
   addToCart(product: IProduct) {
     this.selectedProducts = this.cartService.getCartProductsList()
     if(this.selectedProducts.length > 0) {
-      this.selectedProducts.forEach((selectedProduct) => {
-        if (selectedProduct.productId === product.id) {
-          this.cartService.alterateAmountProduct(product.id, selectedProduct.amount + 1)
-          return
-        } else {
-          this.cartService.addProduct({ productId: product.id, amount: 1 })
+
+      let hasProduct: boolean = this.selectedProducts.some((item) => {
+        if(item.productId === product.id) {
+          return true
         }
+        return false
       })
+
+      if(hasProduct) {
+        console.log('ja temos esse produto no carrinho!')
+        this.cartService.alterateAmountProduct(product.id)
+      } else {
+        console.log('nao temos esse produto no carrinho!')
+        this.cartService.addProduct({ productId: product.id, amount: 1 })
+      }
     }
     else {
+      console.log('caiu no global')
       this.cartService.addProduct({ productId: product.id, amount: 1 })
     }
     console.log(this.cartService.getCartProductsList())

@@ -20,18 +20,33 @@ export class CartService {
     return this.cartProducts
   }
 
-  alterateAmountProduct(id: string, amount: number) {
+  alterateAmountProduct(id: string) {
+    let totalProducts: number = 0
     this.cartProducts.forEach((product) => {
+      totalProducts += product.amount
       if (product.productId === id) {
-        product.amount = amount
+        product.amount++
+        totalProducts++
         return
       }
     })
+    console.log('caiu no item existente no carrinho',totalProducts)
+    this.addedProduct$.next(totalProducts)
+  }
+
+  clearCart() {
+    this.cartProducts = []
+    this.addedProduct$.next(0)
   }
 
   addProduct(product: ICartProduct) {
+    let totalProducts = 0
     this.cartProducts.push(product)
-    this.addedProduct$.next(this.cartProducts.length)
+    this.cartProducts.forEach((product) => {
+      totalProducts += product.amount
+    })
+    console.log(totalProducts)
+    this.addedProduct$.next(totalProducts)
 
     console.log(this.cartProducts)
   }

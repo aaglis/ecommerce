@@ -5,6 +5,8 @@ import { IAdminPayload } from '../../../../core/interfaces/admin-payload.interfa
 import { InputLayoutComponent } from '../../../../shared/components/input-layout/input-layout.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { LucideAngularModule } from 'lucide-angular';
+import { jwtDecode } from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admins',
@@ -37,8 +39,22 @@ export class AdminsComponent implements OnInit{
   }
 
   openModal() {
-    const dialogRef = this.dialog.open(AddAdminDialogComponent);
+    const token = localStorage.getItem('token')
 
+    if(token) {
+      const decodedToken: IAdminPayload = jwtDecode(token)
+      if(decodedToken.role !== 'superAdmin') {
+        Swal.fire({
+          title: 'Sem permissão!',
+          icon: 'error',
+          text: 'Administradores comuns não podem adicionar novos administradores.',
+          confirmButtonText: 'Ok'
+        })
+        return
+      }
+    }
+
+    const dialogRef = this.dialog.open(AddAdminDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);

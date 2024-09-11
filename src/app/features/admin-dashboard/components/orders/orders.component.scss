@@ -1,0 +1,146 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  padding: 20px 0;
+  border-radius: 20px;
+  background-color: #fff;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 7px ;
+    height: 5px ; /* Se você precisar personalizar o scroll horizontal */
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: lighten(#000000, 25%); /* Cor do thumb */
+    border-radius: 10px ; /* Arredondamento do thumb */
+  }
+
+  header {
+    width: 100%;
+    padding: 20px 90px 40px 90px;
+  }
+  .table-orders {
+    table {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      tr:not(:first-child) {
+        border-top: 1px solid #f0f0f0;
+
+      }
+
+      tr {
+        display: flex;
+        padding: 15px 0;
+        text-align: center;
+        align-items: center;
+
+        &.first {
+          gap: 20px;
+        }
+        th {
+          flex: 1;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: #000;
+        }
+        &.items-table {
+          cursor: pointer;
+          display: flex;
+          flex-direction: column;
+          .start-infos{
+            width: 100%;
+            display: flex;
+            .show-more lucide-icon {
+              transition: .3s ease-out;
+            }
+            td {
+              flex: 1;
+              font-size: 1rem;
+              color: #595959;
+              padding: 10px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              img {
+                width: 70px;
+                height: 70px;
+                object-fit: cover;
+                border-radius: 50%;
+              }
+              &:first-child {
+                color: #000;
+              }
+            }
+          }
+          .details {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            max-height: 0;
+            opacity: 0;
+
+            overflow: hidden;
+            transition: max-height .5s, opacity .5s ease-out;
+            table {
+              tr {
+                gap: 20px;
+                padding: 15px 0;
+                display: flex;
+                justify-content: space-between;
+                th {
+                  display: flex;
+                  font-size: 1rem;
+                  font-weight: 600;
+                  color: #000;
+                  justify-content: center;
+                  &.start {
+                    justify-content: start;
+                  }
+                  &.end {
+                    justify-content: end;
+                  }
+                }
+                td {
+                  display: flex;
+                  font-size: 1rem;
+                  color: #595959;
+                  min-width: 120px;
+                  &.middle {
+                    justify-content: center;
+                  }
+                  &.end {
+                    justify-content: end;
+                  }
+                }
+              }
+            }
+            .final {
+              display: flex;
+              padding-top: 15px;
+              justify-content: end;
+              p span {
+                font-weight: 500;
+              }
+            }
+          }
+
+          &.active {
+            .details {
+              max-height: 400px;
+              opacity: 1;
+            }
+            .start-infos .show-more lucide-icon {
+              transform: rotate(90deg);
+            }
+          }
+        }
+      }
+    }
+  }
+}

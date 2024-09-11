@@ -1,12 +1,13 @@
 import { AsyncPipe, CommonModule, NgOptimizedImage } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { LoginService } from '../../../services/login.service';
 import { Subscription } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { LucideAngularModule } from 'lucide-angular';
 import { IUserInfos } from '../../../core/interfaces/user-infos.interface';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -17,7 +18,8 @@ import { IUserInfos } from '../../../core/interfaces/user-infos.interface';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnDestroy, OnInit {
-  loginService = inject(LoginService)
+  private router = inject(Router)
+  private loginService = inject(LoginService)
 
   searchImg: string = 'assets/search-icon.svg'
   userImg: string = 'assets/user-icon.svg'
@@ -57,6 +59,34 @@ export class HeaderComponent implements OnDestroy, OnInit {
 
   logout() {
     this.loginService.logout()
+  }
+
+  redirectToCartPage() {
+    const token = localStorage.getItem('token')
+    if(token) {
+      const decodedToken: any = jwtDecode(token)
+      if(decodedToken.cpf) {
+        this.router.navigate(['/carrinho'])
+      } else {
+        Swal.fire({
+          title: 'Administradores não podem acessar o carrinho',
+          text: 'Para acessar o carrinho, você precisa entrar como usuário.',
+          icon: 'warning',
+          confirmButtonText: 'Entrar como usuário',
+        }).then(() => {
+          this.router.navigate(['/login'])
+        })
+      }
+    } else {
+      Swal.fire({
+        title: 'Você precisa estar logado',
+        text: 'Para acessar o carrinho, você precisa estar logado.',
+        icon: 'warning',
+        confirmButtonText: 'Fazer Login',
+      }).then(() => {
+        this.router.navigate(['/login'])
+      })
+    }
   }
 
 }

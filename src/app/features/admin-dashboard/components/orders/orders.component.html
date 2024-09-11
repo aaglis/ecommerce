@@ -1,0 +1,48 @@
+<header>
+  <h2>Compras</h2>
+</header>
+
+<section class="table-orders">
+  <table>
+    <tr class="first">
+      <th>Comprador</th>
+      <th>Data</th>
+      <th>Ações</th>
+    </tr>
+    @for(order of orders; track $index) {
+      <tr #tableItem class="items-table">
+        <div class="start-infos">
+          @for(user of users; track $index) {
+            @if(user.id === order.userId) {
+              <td>{{ user.name }}</td>
+            }
+          }
+          <td>{{ order.purchaseDate | date: 'dd/MM/yyyy' }}</td>
+          <td title="show-more" class="show-more">
+            <lucide-icon #toggleDetails name="chevron-right" [size]="28" strokeWidth="2"></lucide-icon>
+          </td>
+        </div>
+        <div class="details">
+          <table>
+            <tr>
+              <th class="start">Produto</th>
+              <th>Quantidade</th>
+              <th class="end">Preço</th>
+            </tr>
+            @for(product of order.products; track $index) {
+              <tr>
+                <td>{{ product.productName }}</td>
+                <td class="middle">{{ product.amount }}</td>
+                <td class="end">{{ product.productPrice }}</td>
+              </tr>
+            }
+          </table>
+          <div class="final">
+            <p>Total: <span>R${{order.price}}</span></p>
+          </div>
+        </div>
+      </tr>
+    }
+  </table>
+</section>
+

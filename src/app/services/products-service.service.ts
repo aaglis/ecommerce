@@ -1,12 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IProduct } from '../core/interfaces/product.interface';
+import { ICreateProduct } from '../core/interfaces/create-product.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsServiceService {
+export class ProductsService {
 
     private apiUrl = `${environment.userUrl}/product`
 
@@ -18,6 +19,15 @@ export class ProductsServiceService {
 
     getProductById(id: string) {
       return this.httpClient.get<IProduct>(`${this.apiUrl}/find-oneId/${id}`)
+    }
+
+    createProduct(product: ICreateProduct) {
+      const token = localStorage.getItem('token')
+
+      const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      });
+      return this.httpClient.post(`${this.apiUrl}/create`, product, { headers })
     }
 
     /*

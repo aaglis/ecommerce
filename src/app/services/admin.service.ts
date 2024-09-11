@@ -66,8 +66,17 @@ export class AdminService {
   }
 
   logout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/admin/login']);
+    Swal.fire({
+      title: 'Tem certeza que deseja sair?',
+      showCancelButton: true,
+      confirmButtonText: 'Sim',
+      cancelButtonText: 'Não',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('token');
+        this.router.navigate(['/admin/login']);
+      }
+    })
   }
 
   getAllAdmins() {

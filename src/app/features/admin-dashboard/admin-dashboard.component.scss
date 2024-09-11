@@ -4,22 +4,32 @@
   aside {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 280px;
     padding: 40px 20px 0 20px;
-    gap: 40px;
+    gap: 60px;
     nav {
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 40px;
       .item {
         display: flex;
         gap: 15px;
         align-items: center;
         color: gray;
+        transition: .3s;
         a {
           color: gray;
           text-decoration: none;
           font-weight: 500;
+          font-size: 1.1rem;
+          transition: .3s;
+        }
+
+        &.active {
+          color: #000;
+          a {
+            color: #000;
+          }
         }
       }
     }
@@ -29,10 +39,20 @@
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 40px 20px;
+    padding: 40px 20px 20px 20px;
     background-color: #f8f8f8;
     header {
-      padding-bottom: 6rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 40px;
+      lucide-icon {
+        cursor: pointer;
+      }
+      h2 {
+        padding: 0;
+        margin: 0;
+      }
     }
   }
 }

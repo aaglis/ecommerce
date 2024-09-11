@@ -10,16 +10,21 @@
   .actions {
     width: 100%;
     display: flex;
-    justify-content: flex-end;
-    padding-right: 90px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 90px 40px 90px;
     button {
       width: 150px;
-      height: 35px;
+      height: 40px;
       border-style: none;
       background-color: #000;
       border-radius: 5px;
       color: #fff;
       font-weight: bold;
+      transition: .3s;
+      &:hover {
+        background-color: lighten(#000, 10%);
+      }
     }
   }
   .table-admins {
@@ -40,7 +45,6 @@
         text-align: center;
         th {
           flex: 1;
-          font-size: 1.2rem;
           font-weight: 600;
           color: #000;
         }

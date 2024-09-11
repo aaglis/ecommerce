@@ -4,6 +4,8 @@ import { IOrderProducts } from '../core/interfaces/order-products.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
+import { IResponseOrders } from '../core/interfaces/response-orders.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,11 @@ export class OrderService {
   private url = `${environment.userUrl}/order`
   private httpClient = inject(HttpClient)
   private router = inject(Router)
+
+  private orders$ = new BehaviorSubject<IResponseOrders[] | null>(null)
+  getOrders$() {
+    return this.orders$.asObservable()
+  }
 
   createOrder(order: IOrderProducts) {
     const token = localStorage.getItem('token')
@@ -31,6 +38,25 @@ export class OrderService {
         }).then(() => {
           this.router.navigate(['/'])
         })
+      },
+      error: (error) => {
+        console.error(error)
+      }
+    })
+  }
+
+
+  getAllOrders() {
+    const token = localStorage.getItem('token')
+
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.httpClient.get<IResponseOrders[]>(`${this.url}/find-all`, { headers }).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.orders$.next(res)
       },
       error: (error) => {
         console.error(error)

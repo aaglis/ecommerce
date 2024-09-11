@@ -6,11 +6,28 @@
   padding: 20px 0;
   border-radius: 20px;
   background-color: #fff;
-  header {
+
+  .actions {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 20px 90px 40px 90px;
+    button {
+      width: 150px;
+      height: 40px;
+      border-style: none;
+      background-color: #000;
+      border-radius: 5px;
+      color: #fff;
+      font-weight: bold;
+      &:hover {
+        background-color: lighten(#000, 10%);
+      }
+    }
   }
-  .table-admins {
+
+  .table-products {
     table {
       display: flex;
       flex-direction: column;
@@ -26,9 +43,10 @@
         gap: 20px;
         padding: 15px 0;
         text-align: center;
+        align-items: center;
         th {
           flex: 1;
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           font-weight: 600;
           color: #000;
         }
@@ -37,6 +55,13 @@
           font-size: 1rem;
           color: #595959;
           padding: 10px;
+
+          img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+          }
           &:first-child {
             color: #000;
           }

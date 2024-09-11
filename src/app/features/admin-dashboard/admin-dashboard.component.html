@@ -1,20 +1,20 @@
 <aside>
-  <h2>Ecommerce</h2>
+  <h2>Milano Cupertino</h2>
   <nav>
-    <div class="item">
-      <lucide-icon name="user" [size]="26"></lucide-icon>
+    <div class="item" routerLinkActive="active">
+      <lucide-icon name="user" [size]="30"></lucide-icon>
       <a routerLink="users">Usuários</a>
     </div>
-    <div class="item">
-      <lucide-icon name="box" [size]="26"></lucide-icon>
+    <div class="item" routerLinkActive="active">
+      <lucide-icon name="box" [size]="30"></lucide-icon>
       <a routerLink="products">Produtos</a>
     </div>
-    <div class="item">
-      <lucide-icon name="shopping-cart" [size]="26"></lucide-icon>
+    <div class="item" routerLinkActive="active">
+      <lucide-icon name="shopping-cart" [size]="30"></lucide-icon>
       <a routerLink="orders">Compras</a>
     </div>
-    <div class="item">
-      <lucide-icon name="user-cog" [size]="26"></lucide-icon>
+    <div class="item" routerLinkActive="active">
+      <lucide-icon name="user-cog" [size]="30"></lucide-icon>
       <a routerLink="administrators">Administradores</a>
     </div>
   </nav>
@@ -22,7 +22,8 @@
 
 <div class="dashboard">
   <header>
-    <h2>Olá, <span>{{ adminInfos?.name}}</span>!</h2>
+    <h2>Olá, <strong>{{ adminInfos?.name}}</strong>!</h2>
+    <lucide-icon name="log-out" size="26" strokeWidth="2" title="sair" (click)="logout()"></lucide-icon>
   </header>
   <router-outlet></router-outlet>
 </div>

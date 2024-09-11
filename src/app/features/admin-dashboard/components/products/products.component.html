@@ -1,0 +1,23 @@
+<header class="actions">
+  <h2>Produtos</h2>
+  <button class="primary" (click)="openModal()">Adicionar Produto</button>
+</header>
+
+<section class="table-products">
+  <table>
+    <tr>
+      <th>Produto</th>
+      <th>Tipo</th>
+      <th>Nome</th>
+      <th>Estoque</th>
+    </tr>
+    @for(product of products; track $index) {
+      <tr>
+        <td><img [src]="product.imageUrl" alt=""></td>
+        <td>{{ product.type }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.stock }}</td>
+      </tr>
+    }
+  </table>
+</section>

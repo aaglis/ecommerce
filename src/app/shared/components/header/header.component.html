@@ -4,7 +4,7 @@
             <img [ngSrc]='searchImg' width="30" height="30" alt="icone de busca"/>
         </section>
         <section class="logo">
-          <h2>Ecommerce</h2>
+          <a routerLink="/"><h2>Milano Cupertino</h2></a>
         </section>
         <section class="client-area">
           <!-- {{ user ? 'Olá, ' + getFirstName(user.name) : 'Entrar' }} -->
@@ -37,7 +37,7 @@
             </a>
           </div>
           }
-          <div class="shopping-cart">
+          <div class="shopping-cart" (click)="redirectToCartPage()">
             <app-cart></app-cart>
           </div>
         </section>
